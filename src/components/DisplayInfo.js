@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import BookInfo from "./BookInfo";
 import BookTableHeader from "./BookTableHeader";
 import bgImage from "../../images/Library-Management-System.png";
+import { useNavigate } from "react-router-dom";
 
 const DisplayInfo = () => {
   const [searchBook, setSearchBook] = useState("");
@@ -18,7 +19,8 @@ const DisplayInfo = () => {
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [isEditBook, setIsEditBook] = useState(false);
   const [editBookIndex, setEditBookIndex] = useState(null);
-  const env = 'PROD';
+  const navigate = useNavigate();
+  const env = '';
   const publicMongoUrl = env === 'PROD' ? 'https://bookmanage-backend-nqsf.onrender.com' : 'http://localhost:3000';
 
   function filterData(searchBook, books) {
@@ -43,6 +45,10 @@ const DisplayInfo = () => {
     } catch (error) {
       console.log("error while getting data", error);
     }
+  }
+  const handleLogoutBuuton = ()=>{
+    localStorage.removeItem("authToken");
+    navigate('/login');
   }
   useEffect(() => {
     (async function () {
@@ -88,8 +94,7 @@ const DisplayInfo = () => {
             >
               Search Book
             </button>
-          </div>
-          <div className="mx-5">
+            <div className="">
             <button
               class="select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
@@ -114,14 +119,17 @@ const DisplayInfo = () => {
               ADD BOOK
             </button>
           </div>
-          {/* <div class="flex justify-end">
+          <div class="">
             <button
               class="select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
+              onClick={handleLogoutBuuton}
             >
               Log Out
             </button>
-          </div> */}
+          </div>
+          </div>
+          
         </div>
         {searchResults && (
           <div className="my-3 text-red-500 font-bold  text-2xl flex justify-center items-center">

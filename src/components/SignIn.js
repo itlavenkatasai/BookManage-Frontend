@@ -8,7 +8,7 @@ const SignIn = () => {
         email:"",
         password:""
     });
-    const env = 'PROD';
+    const env = '';
     const publicMongoUrl = env === 'PROD' ? 'https://bookmanage-backend-nqsf.onrender.com' : 'http://localhost:3000';
 
     const[error,setError] = useState({});

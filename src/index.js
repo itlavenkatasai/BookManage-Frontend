@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const AppLayOut = ()=>{
   return (
     <div>
-     
+
       <Outlet />
     </div>
   );
