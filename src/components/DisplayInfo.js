@@ -20,7 +20,7 @@ const DisplayInfo = () => {
   const [isEditBook, setIsEditBook] = useState(false);
   const [editBookIndex, setEditBookIndex] = useState(null);
   const navigate = useNavigate();
-  const env = '';
+  const env = 'PROD';
   const publicMongoUrl = env === 'PROD' ? 'https://bookmanage-backend-nqsf.onrender.com' : 'http://localhost:3000';
 
   function filterData(searchBook, books) {
